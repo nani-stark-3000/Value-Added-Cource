@@ -1,0 +1,51 @@
+<html>
+    <head>
+        <title>
+            status
+        </title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
+        <div class="topnav">
+            <a class="active" href="home">Home</a>
+            <a href="create">create</a>
+            <a href="register">Register</a>
+            <a href="a_daylist">Attendence</a>
+            <a href="a-status">A-Status</a>
+        </div>
+        <form action="/slist" method="[GET, POST]"><br>
+            <input type="submit" value="show list"><br>
+            click hear to show courses list <br>
+        </form>
+        {% if list!= undefined %}
+            {%print(list)%}
+        {% endif %}
+        <form action="/a-status" method="post">
+            course select<input type="text" name="s_course"><br>
+            roll no <input type="text" name="roll"><br>
+
+            <input type="submit" value="show dates"><br>
+            {% if comment!= undefined %}
+                {%print(comment)%}
+            {% endif %}   
+        </form>
+    </body>
+    {% if sheet!= undefined %}
+      <table id="demo" width="80%" align="center">
+        {% for row in range(1, sheet.max_row + 1) %}
+        <tr align="center">
+            {% if sheet.cell(row,2).value == roll or row==1%}
+                {% for col in range(1, sheet.max_column + 1): %}
+                {% if sheet.cell(row, col).value == None %}
+                    <td> </td>
+                {% else %}
+                    <td>{{sheet.cell(row, col).value}}</td>
+                {% endif %}
+                </td>
+                {% endfor %}
+            {% endif %}
+        </tr>
+        {% endfor %}
+      </table>
+    {% endif %}
+</html>

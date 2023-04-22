@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <title>
+            create
+        </title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
+        <div class="topnav">
+            <a class="active" href="home">Home</a>
+            <a href="create">create</a>
+            <a href="register">Register</a>
+            <a href="a_daylist">Attendence</a>
+            <a href="a-status">A-Status</a>
+        </div>
+        <form action="/create" method="post" >
+            course name <input type="text" name="course"><br>
+            Branch name <input type="text" name="branch"><br>
+            year <input type="text" name="year"><br>
+            <input type="submit" value="create"><br>
+        </form>
+        {% if file!= undefined %}
+            <b>{{file}} successfully created</b>
+        {% endif %}
+    </body>
+    {% if sheet!= undefined %}
+            <table id="demo" width="80%" align="center" border="1">
+                {% for row in range(1, sheet.max_row + 1) %}
+                <tr align="center">
+                {% for col in range(1, sheet.max_column + 1): %}
+                {% if sheet.cell(row, col).value == None %}
+                    <td> </td>
+                {% else %}
+                    <td>{{sheet.cell(row, col).value}}</td>
+                {% endif %}
+                </td>
+                {% endfor %}
+                </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+
+</html>

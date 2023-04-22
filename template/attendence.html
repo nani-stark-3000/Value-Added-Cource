@@ -1,0 +1,81 @@
+<html>
+    <head>
+        <title>
+            attendence
+        </title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
+        <div class="topnav">
+            <a class="active" href="home">Home</a>
+            <a href="create">create</a>
+            <a href="register">Register</a>
+            <a href="a_daylist">Attendence</a>
+            <a href="a-status">A-Status</a>
+        </div>
+        <form action="/list" method="[GET, POST]"><br>
+            <input type="submit" value="show list"><br>
+            click hear to show courses list <br>
+        </form>
+        {% if list!= undefined %}
+            {%print(list)%}
+        {% endif %}
+
+        <h1>Bulk attendences</h1>
+        <form action="/a_daylist" method="POST">
+            course select<input type="text" name="s_course"><br>
+            <input type="submit" value="show dates"><br>
+            {% if days!= undefined %}
+                {%print(days)%}
+            {% endif %}
+        </form>
+
+        
+        <form action="a-post" method="post">
+            day select<input type="text" name="a_day"><br>
+            n lisit<input type="text" name="n_list"><br>
+            l list <input type="text" name="l_list"><br>
+            <input type="submit", value="submit">
+        </form>
+        
+        <h1>Selected attendences</h1>
+
+        <form action="/s_daylist" method="POST">
+            course select<input type="text" name="s_course"><br>
+            <input type="submit" value="show dates"><br>
+            {% if days!= undefined %}
+                {%print(days)%}
+            {% endif %}
+        </form>
+
+        <form action="/s-post" method="POST">
+            day <input type="text" name="s_day"><br>
+            roll no<input type="text" name="rollno"><br>
+            1 for present and 0 for absent <input type="text" name="status"><br>
+            <input type="submit" value="show dates"><br>    
+        </form>
+
+        {% if status!=undefined %}
+            {%print(status)%}
+        {% endif %}
+
+
+        {% if sheet!= undefined %}
+            <table id="demo" width="80%" align="center">
+                {% for row in range(1, sheet.max_row + 1) %}
+                <tr align="center">
+                {% for col in range(1, sheet.max_column + 1): %}
+                {% if sheet.cell(row, col).value == None %}
+                    <td> </td>
+                {% else %}
+                    <td>{{sheet.cell(row, col).value}}</td>
+                {% endif %}
+                </td>
+                {% endfor %}
+                </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+
+    </body>
+</html>

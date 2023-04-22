@@ -1,0 +1,9 @@
+Flask
+xlsxWriter
+openpyxl
+pandas
+boto3
+cv2
+os
+io
+
