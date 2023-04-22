@@ -288,5 +288,5 @@ def _status_():
 
 if __name__=="__main__":
     s_course = ''
-    app.run(debug=True,port=47)
+    app.run(debug=True,port=34)
         
