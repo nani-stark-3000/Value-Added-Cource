@@ -1,4 +1,4 @@
-# Flask Attend App
+# Value Added Course
 
 This is a Flask web application that allows course instructors to create, register students, and mark attendance. The application also provides a feedback section for students to give feedback on the course content.
 
